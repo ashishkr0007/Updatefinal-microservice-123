@@ -1,12 +1,17 @@
 package com.cts.user.controller;
 
+import com.cts.user.dto.UpdateUserRequest;
 import com.cts.user.dto.UserResponse;
-import com.cts.user.exception.ErrorResponse;
+import com.cts.user.exception.AccessDeniedException;
 import com.cts.user.exception.ResourceNotFoundException;
 import com.cts.user.repository.UserRepository;
 import com.cts.user.service.UserService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -19,9 +24,19 @@ public class UserController {
     private final UserRepository userRepository;
 
     @GetMapping("/me")
-    public ResponseEntity<UserResponse> me(@RequestHeader("X-User-Email") String email) {
-        var user = userRepository.findByEmail(email).orElseThrow();
+    public ResponseEntity<UserResponse> me() {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        String email = auth.getName();
+        var user = userRepository.findByEmail(email)
+                .orElseThrow(() -> new ResourceNotFoundException("User not found"));
         return ResponseEntity.ok(userService.toResponse(user));
+    }
+
+    @PatchMapping("/me")
+    public ResponseEntity<UserResponse> updateMe(@Valid @RequestBody UpdateUserRequest req) {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        String email = auth.getName();
+        return ResponseEntity.ok(userService.updateUser(email, req));
     }
 
     @GetMapping("/{id}")
@@ -39,11 +54,13 @@ public class UserController {
     }
 
     @GetMapping
-    public ResponseEntity<?> listAll(
-            @RequestHeader(value = "X-User-Role", required = false) String role) {
-        if (role == null || !"ADMIN".equals(role)) {
-            return ResponseEntity.status(403)
-                    .body(new ErrorResponse("You are not authorized to access this resource"));
+    public ResponseEntity<List<UserResponse>> listAll() {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        boolean isAdmin = auth.getAuthorities().stream()
+                .map(GrantedAuthority::getAuthority)
+                .anyMatch("ROLE_ADMIN"::equals);
+        if (!isAdmin) {
+            throw new AccessDeniedException("You are not authorized to do this");
         }
         return ResponseEntity.ok(userService.listAll());
     }

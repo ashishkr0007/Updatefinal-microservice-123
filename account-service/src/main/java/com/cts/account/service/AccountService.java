@@ -3,6 +3,7 @@ package com.cts.account.service;
 import com.cts.account.client.NotificationClient;
 import com.cts.account.client.NotificationRequest;
 import com.cts.account.client.UserClient;
+import com.cts.account.exception.DuplicateAccountException;
 import com.cts.account.model.Account;
 import com.cts.account.repository.AccountRepository;
 import lombok.RequiredArgsConstructor;
@@ -25,6 +26,11 @@ public class AccountService {
             } catch (Exception e) {
                 throw new RuntimeException("User not found with ID: " + account.getUserID());
             }
+        }
+
+        if (account.getUserID() != null && accountRepository.existsByUserID(account.getUserID())) {
+            throw new DuplicateAccountException(
+                    "User already has a bank account. Each user can have only one account.");
         }
 
         if (account.getStatus() == null || account.getStatus().isBlank()) {
