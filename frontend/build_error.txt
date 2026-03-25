@@ -1,0 +1,88 @@
+﻿npx : Node.js version v19.6.0 detected.
+At line:1 char:1
++ npx -y ng build 
+--configuration=development 2>&1 | Out-File 
+-FilePath ...
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~
+    + CategoryInfo          : NotSpecified:  
+   (Node.js version v19.6.0 detected.:Strin  
+  g) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandE 
+   rror
+ 
+Odd numbered Node.js versions will not enter 
+LTS status and should not be used for 
+production. For more information, please see 
+https://nodejs.org/en/about/previous-releases
+/.
+[33mΓ¥»[39m Building...
+[32mΓ£ö[39m Building...
+[1mInitial chunk files[22m[2m | [22m[1mNames[22m                       [2m | [22m [1mRaw size[22m
+[32mchunk-NKJC5NX2.js[39m  [2m | [22m[2m-[22m                           [2m | [22m  [36m1.11 MB[39m[2m | [22m
+[32mstyles.css[39m         [2m | [22m[2mstyles[22m                      [2m | [22m[36m285.00 kB[39m[2m | [22m
+[32mchunk-IJ7KISW2.js[39m  [2m | [22m[2m-[22m                           [2m | [22m[36m268.73 kB[39m[2m | [22m
+[32mpolyfills.js[39m       [2m | [22m[2mpolyfills[22m                   [2m | [22m [36m89.77 kB[39m[2m | [22m
+[32mmain.js[39m            [2m | [22m[2mmain[22m                        [2m | [22m  [36m7.75 kB[39m[2m | [22m
+[32mchunk-2TNLKYRC.js[39m  [2m | [22m[2m-[22m                           [2m | [22m  [36m2.72 kB[39m[2m | [22m
+[32mchunk-FSI2PV46.js[39m  [2m | [22m[2m-[22m                           [2m | [22m  [36m1.05 kB[39m[2m | [22m
+
+[1m [22m                  [2m | [22m[1mInitial total[22m               [2m | [22m  [1m1.77 MB[22m
+
+[1mLazy chunk files[22m   [2m | [22m[1mNames[22m                       [2m | [22m [1mRaw size[22m
+[32mchunk-M2NVEKB5.js[39m  [2m | [22m[2m-[22m                           [2m | [22m[36m214.42 kB[39m[2m | [22m
+[32mchunk-Y7UY3JZS.js[39m  [2m | [22m[2mlayout-component[22m            [2m | [22m [36m24.88 kB[39m[2m | [22m
+[32mchunk-VRHH3NBC.js[39m  [2m | [22m[2mtransactions-component[22m      [2m | [22m [36m19.42 kB[39m[2m | [22m
+[32mchunk-6QJ4HCBY.js[39m  [2m | [22m[2manalytics-component[22m         [2m | [22m [36m17.59 kB[39m[2m | [22m
+[32mchunk-3FNWBNFY.js[39m  [2m | [22m[2mregister-component[22m          [2m | [22m [36m16.57 kB[39m[2m | [22m
+[32mchunk-LHF2PEGZ.js[39m  [2m | [22m[2maccount-management-component[22m[2m | [22m [36m15.95 kB[39m[2m | [22m
+[32mchunk-7TLUT7GF.js[39m  [2m | [22m[2mdashboard-component[22m         [2m | [22m [36m12.69 kB[39m[2m | [22m
+[32mchunk-2KC6QQYF.js[39m  [2m | [22m[2mlogin-component[22m             [2m | [22m [36m11.41 kB[39m[2m | [22m
+[32mchunk-EQVDRGYC.js[39m  [2m | [22m[2mprofile-component[22m           [2m | [22m [36m10.07 kB[39m[2m | [22m
+[32mchunk-UCL7347Q.js[39m  [2m | [22m[2maccount-component[22m           [2m | [22m  [36m8.24 kB[39m[2m | [22m
+[32mchunk-VPPU5DJE.js[39m  [2m | [22m[2mnotifications-component[22m     [2m | [22m  [36m7.27 kB[39m[2m | [22m
+[32mchunk-SUYKZH6Z.js[39m  [2m | [22m[2muser-management-component[22m   [2m | [22m  [36m6.57 kB[39m[2m | [22m
+[32mchunk-4LWGB4FR.js[39m  [2m | [22m[2m-[22m                           [2m | [22m  [36m2.80 kB[39m[2m | [22m
+
+Application bundle generation complete. [11.302 seconds]
+
+[1m[33m[33mΓû▓ 
+[43;33m[[43;30mWARNING[43;33m][0m 
+[1mNG8107: The left side of this optional 
+chain operation does not include 'null' or 
+'undefined' in its type, therefore the '?.' 
+operator can be replaced with the '.' 
+operator.[0m [1m[35m[plugin 
+angular-compiler][0m
+
+    src/app/pages/analytics/analytics.compone
+nt.ts:80:34:
+[37m      80 Γöé             
+<td>Γé╣{{r.totalAmount[32m?.toFix[37med(2) 
+|| '0.00'}}</td>
+         Γò╡                                 
+[32m~~~~~~~[0m
+
+
+[33mΓû▓ 
+[43;33m[[43;30mWARNING[43;33m][0m 
+[1mAll "@import" rules must come first[0m 
+[invalid-@import]
+
+    src/styles.css:568:0:
+[37m      568 Γöé [32m@import[37m url('htt
+ps://fonts.googleapis.com/css2?family=Inter:w
+ght@...
+          Γò╡ [32m~~~~~~~[0m
+
+  This rule cannot come before an "@import" 
+rule
+
+    src/styles.css:1:0:
+[37m      1 Γöé [32m[37m*, ::before, 
+::after {
+        Γò╡ [32m^[0m
+
+[39m[22m
+Output location: C:\Users\Ashish\OneDrive\Desktop\New folder\Banking-Microservice-final-main\Banking-Microservice-final-main\frontend\dist\frontend
+

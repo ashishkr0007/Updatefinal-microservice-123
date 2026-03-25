@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
-import { AuthService } from '../../core/auth.service';
-import { ApiService } from '../../core/api.service';
+import { AuthService } from '../core/auth.service';
+import { ApiService } from '../core/api.service';
 
 @Component({
     selector: 'app-navbar',
