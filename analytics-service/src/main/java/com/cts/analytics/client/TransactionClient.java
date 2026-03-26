@@ -10,7 +10,7 @@ import java.util.List;
 public interface TransactionClient {
     @GetMapping("/api/transactions/internal/range")
     List<TransactionDTO> getTransactionsByDateRange(
-        @RequestParam LocalDateTime from,
-        @RequestParam LocalDateTime to
+        @RequestParam("from") @org.springframework.format.annotation.DateTimeFormat(iso = org.springframework.format.annotation.DateTimeFormat.ISO.DATE_TIME) LocalDateTime from,
+        @RequestParam("to") @org.springframework.format.annotation.DateTimeFormat(iso = org.springframework.format.annotation.DateTimeFormat.ISO.DATE_TIME) LocalDateTime to
     );
 }

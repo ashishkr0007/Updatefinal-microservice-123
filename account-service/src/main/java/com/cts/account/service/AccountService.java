@@ -28,9 +28,11 @@ public class AccountService {
             }
         }
 
-        if (account.getUserID() != null && accountRepository.existsByUserID(account.getUserID())) {
-            throw new DuplicateAccountException(
-                    "User already has a bank account. Each user can have only one account.");
+        if (account.getUserID() != null && account.getAccountType() != null) {
+            if (accountRepository.existsByUserIDAndAccountType(account.getUserID(), account.getAccountType())) {
+                throw new DuplicateAccountException(
+                        "User already has a " + account.getAccountType() + " account. Each user can have only one " + account.getAccountType() + " account.");
+            }
         }
 
         if (account.getStatus() == null || account.getStatus().isBlank()) {
